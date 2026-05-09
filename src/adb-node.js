@@ -100,6 +100,15 @@ const TOOLS = {
       } catch { return '(not found)'; }
     },
   },
+  'vision.run': {
+    description: 'Execute a visual phone task using AutoGLM-Phone-9B vision model. Takes screenshot, analyzes via AI, taps/types/swipes on screen automatically.',
+    handler: (p) => {
+      const task = p.task || p.text || '';
+      if (!task) throw new Error('Task description required');
+      const result = execSync('node ' + HOME + '/src/visual-agent.js ' + JSON.stringify(task), { timeout: 120000, encoding: 'utf8' });
+      return result;
+    },
+  },
 };
 
 // Generate or load Ed25519 keypair

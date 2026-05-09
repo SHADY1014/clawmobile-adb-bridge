@@ -24,6 +24,20 @@
             "maxTokens": 8192
           }
         ]
+      },
+      "bigmodel": {
+        "baseUrl": "https://open.bigmodel.cn/api/paas/v4",
+        "apiKey": "1773e112068947eb9ca0efe637381ac1.WEBeBhlSzWAMagIa",
+        "api": "openai",
+        "models": [
+          {
+            "id": "autoglm-phone",
+            "name": "AutoGLM Phone",
+            "input": ["text", "image"],
+            "contextWindow": 128000,
+            "maxTokens": 3000
+          }
+        ]
       }
     }
   },

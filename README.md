@@ -129,6 +129,24 @@ openclaw channels login --channel openclaw-weixin
 | `screen.capture` | 截屏 |
 | `clipboard.get/set` | 读写剪贴板 |
 | `shell.exec` | 以 root 身份执行任意 shell 命令 |
+| `vision.run` | **视觉 AI 任务** — 截图 + AutoGLM-Phone-9B 分析 + 自动操作屏幕 |
+
+### 视觉 AI 能力（新增）
+
+集成了 **AutoGLM-Phone-9B**（智谱 AI 视觉模型），让手机能"看懂"屏幕：
+
+```
+自然语言任务 → 截图 → AutoGLM 视觉理解 → 识别按钮/坐标 → ADB 执行 → 验证 → 下一步
+```
+
+用法示例：
+```bash
+# 命令行直接使用
+node src/visual-agent.js "打开微信发消息给文件传输助手说你好"
+
+# 或通过 OpenClaw 调用 vision.run 工具
+```
+> AutoGLM-Phone-9B 目前通过智谱 BigModel API 调用，**限时免费**。见 [bigmodel.cn](https://bigmodel.cn)
 
 ---
 
@@ -137,6 +155,7 @@ openclaw channels login --channel openclaw-weixin
 ```
 ├── src/                # 核心 JS 源码
 │   ├── adb-node.js     # WebSocket ↔ ADB 桥
+│   ├── visual-agent.js # AutoGLM 视觉 AI 代理 ✨
 │   ├── proxy.js        # HTTP CONNECT 代理
 │   ├── clipboard-stub.js
 │   └── ...
@@ -270,6 +289,22 @@ openclaw channels login --channel openclaw-weixin
 | `screen.capture` | Take screenshot |
 | `clipboard.get/set` | Read/write clipboard |
 | `shell.exec` | Execute any shell command as root |
+| `vision.run` | **Visual AI task** — screenshot + AutoGLM-Phone-9B analysis + auto screen operation |
+
+### Visual AI (New)
+
+Integrated with **AutoGLM-Phone-9B** (Zhipu AI vision model) for screen understanding:
+
+```
+Natural language task → Screenshot → AutoGLM vision understanding → Button/coordinate detection → ADB execution → Verify → Next step
+```
+
+Usage:
+```bash
+node src/visual-agent.js "open WeChat and send a message to file transfer"
+```
+
+> AutoGLM-Phone-9B is available via Zhipu BigModel API, **currently free**. See [bigmodel.cn](https://bigmodel.cn)
 
 ---
 
